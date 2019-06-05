@@ -12,7 +12,7 @@
             </tcp-ip>
         </join>
     </network>
-    <map name="user_token_cache_map">
+    <map name="cache_comment_map">
         <backup-count>0</backup-count>
     </map>
 </hazelcast>

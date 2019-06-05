@@ -1,8 +1,7 @@
 package com.duplicate.microservices.hazelcast.cache;
 
+import com.service.commentsservice.models.Comment;
 import com.hazelcast.core.HazelcastInstance;
-import com.grokonez.jwtauthentication.model.User;
-
 public class HazelcastClientTemplate {
 
     private HazelcastInstance hazelcastInstance;
@@ -11,19 +10,14 @@ public class HazelcastClientTemplate {
         this.hazelcastInstance = hazelcastInstance;
     }
 
-    public static final String USER_TOKEN_CACHE_MAP = "user_token_cache_map";
+    public static final String CACHE_COMMENT_MAP = "cache_comment_map";
 
-    public User getUserFromCacheByToken(String token) {
-        return hazelcastInstance.<String, User>getMap(USER_TOKEN_CACHE_MAP).get(token);
+    public Comment getCacheCommentByUserName(String userName) {
+        return hazelcastInstance.<String, Comment>getMap(CACHE_COMMENT_MAP).get(userName);
     }
 
-    public boolean getContainsUserInCacheByToken(String token) {
-        return hazelcastInstance.<String, User>getMap(USER_TOKEN_CACHE_MAP).containsKey(token);
-    }
-
-
-    public User putUserToCacheByToken(String token, User user) {
-        return hazelcastInstance.<String, User>getMap(USER_TOKEN_CACHE_MAP).put(token, user);
+    public Comment putCacheCommentByUserName(String userName, Comment comment) {
+        return hazelcastInstance.<String, Comment>getMap(CACHE_COMMENT_MAP).put(userName, comment);
     }
 
 }
