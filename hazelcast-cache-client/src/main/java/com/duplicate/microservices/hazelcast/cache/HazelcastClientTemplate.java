@@ -16,8 +16,8 @@ public class HazelcastClientTemplate {
         return hazelcastInstance.<String, Comment>getMap(CACHE_COMMENT_MAP).get(userName);
     }
 
-    public Comment putCacheCommentByUserName(String userName, Comment comment) {
-        return hazelcastInstance.<String, Comment>getMap(CACHE_COMMENT_MAP).put(userName, comment);
+    public Comment putCacheCommentByUserName(Comment comment) {
+        return hazelcastInstance.<String, Comment>getMap(CACHE_COMMENT_MAP).put(comment.getUsername(), comment);
     }
 
 }

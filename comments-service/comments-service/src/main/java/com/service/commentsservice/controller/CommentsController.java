@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.duplicate.microservices.hazelcast.cache.HazelcastClientTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,9 @@ public class CommentsController {
 	
 	@Autowired
 	private CommentService commentRep;
-	
+
+	@Autowired
+	private HazelcastClientTemplate hazelcastClientTemplate;
 	/*public CommentsController(CommentRepository comment){
 		this.commentRep = commentRep;
 	}*/
@@ -31,7 +35,7 @@ public class CommentsController {
 	}
 	
 	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
-	public List<Comment> CommentsByUsername(String username) {
+	public List<Comment> CommentsByUsername(@PathVariable String username) {
 		return commentRep.getComments(username);
 	}
 	
@@ -43,6 +47,14 @@ public class CommentsController {
 	public List<Comment> FindAll() {
 		return (List<Comment>) commentRep.findAll();
 	}*/
-	
 
+	@RequestMapping(value = "/cache/{username}", method = RequestMethod.GET)
+	public Comment CacheCommentsByUsername(@PathVariable String username) {
+		return hazelcastClientTemplate.getCacheCommentByUserName(username);
+	}
+
+	@RequestMapping(value = "/cache/addComment", method = RequestMethod.POST)
+	public void AddCacheComment(@Valid @RequestBody Comment text) {
+		hazelcastClientTemplate.putCacheCommentByUserName(text);
+	}
 }
