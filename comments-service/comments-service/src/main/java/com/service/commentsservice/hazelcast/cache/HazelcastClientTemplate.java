@@ -1,4 +1,4 @@
-package com.duplicate.microservices.hazelcast.cache;
+package com.service.commentsservice.hazelcast.cache;
 
 import com.service.commentsservice.models.Comment;
 import com.hazelcast.core.HazelcastInstance;

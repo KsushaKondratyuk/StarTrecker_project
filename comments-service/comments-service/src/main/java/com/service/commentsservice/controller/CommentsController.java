@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.duplicate.microservices.hazelcast.cache.HazelcastClientTemplate;
+import com.service.commentsservice.hazelcast.cache.HazelcastClientTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;

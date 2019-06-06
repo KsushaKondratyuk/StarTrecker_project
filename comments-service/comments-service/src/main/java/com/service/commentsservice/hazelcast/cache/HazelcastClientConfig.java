@@ -1,4 +1,4 @@
-package com.duplicate.microservices.hazelcast.cache;
+package com.service.commentsservice.hazelcast.cache;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
@@ -15,7 +15,7 @@ public class HazelcastClientConfig {
         ClientConfig cfg = new ClientConfig();
 
         ClientNetworkConfig network = cfg.getNetworkConfig();
-        network.addAddress("hazelcast-cache", "hazelcast-cache:5701");
+        network.addAddress("172.17.0.1:5701");
 
 
         return HazelcastClient.newHazelcastClient(cfg);
