@@ -33,6 +33,23 @@ public class SpringBootJwtAuthenticationApplication {
 		annotationConfigApplicationContext.register(CorsFilter.class);
 		annotationConfigApplicationContext.refresh();
 	}
+
+	@Bean
+	CorsFilter corsFilter() {
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowCredentials(true);
+		config.addAllowedOrigin("*");
+		config.addAllowedHeader("*");
+		config.addAllowedMethod("*");
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", config);
+
+		CorsFilter bean = new CorsFilter(source);
+//		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+
+		return bean;
+	}
 	
 }
 
