@@ -28,10 +28,7 @@ public class SpringBootJwtAuthenticationApplication {
 	
 
 	public static void main(String[] args) {
-		final ApplicationContext ctx = SpringApplication.run(SpringBootJwtAuthenticationApplication.class, args);
-		final AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
-		annotationConfigApplicationContext.register(CorsFilter.class);
-		annotationConfigApplicationContext.refresh();
+		SpringApplication.run(SpringBootJwtAuthenticationApplication.class, args);
 	}
 
 	@Bean
