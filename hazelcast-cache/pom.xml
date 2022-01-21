@@ -9,7 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
-        <hazelcast.version>3.9.3</hazelcast.version>
+        <hazelcast.version>4.0.5</hazelcast.version>
     </properties>
 
     <dependencies>
